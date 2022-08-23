@@ -170,7 +170,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "counter_backend"
+name = "counter"
 version = "0.1.0"
 dependencies = [
  "candid",

@@ -49,7 +49,7 @@ Verify the following before running this demo:
 
    ```text
    dfx canister create counter_frontend
-   dfx canister create counter_backend
+   dfx canister create counter
    ```
 
 1. Build your canister.
@@ -62,29 +62,29 @@ Verify the following before running this demo:
 
    ```text
    dfx canister install counter_frontend
-   dfx canister install counter_backend
+   dfx canister install counter
    ```
 
 1. Set the value of the counter.
 
    ```text
-   dfx canister call counter_backend set '(8 : nat)'
+   dfx canister call counter set '(7 : nat)'
    ```
 
 1. Increment the value of the counter.
 
    ```text
-   dfx canister call counter_backend inc
+   dfx canister call counter inc
    ```
 
 1. Get the value of the counter.
 
    ```text
-   dfx canister call counter_backend get
+   dfx canister call counter get
    ```
 
 1. Observe the following result.
 
    ```
-   (8)
+   (8 : nat)
    ```

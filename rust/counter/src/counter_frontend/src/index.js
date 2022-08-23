@@ -1,4 +1,4 @@
-import { counter_backend } from "../../declarations/counter_backend";
+import { counter } from "../../declarations/counter";
 
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -9,7 +9,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   button.setAttribute("disabled", true);
 
   // Interact with foo actor, calling the greet method
-  const greeting = await counter_backend.greet(name);
+  const greeting = await counter.greet(name);
 
   button.removeAttribute("disabled");
 
