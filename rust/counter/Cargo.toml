@@ -1,4 +1,6 @@
 [workspace]
 members = [
     "src/counter",
+    "src/counter_did",
+    "src/counter_yew",
 ]
