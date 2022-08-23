@@ -1,37 +1,90 @@
-# counter
+# Counter
 
-Welcome to your new counter project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+This is a Rust / Yew port of the Mokoto Counter example. 
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+This example demonstrates a counter application. It uses an orthogonally
+persistent `counter` variable to store an arbitrary precision natural number
+that represents the current value of the counter.
 
-To learn more before you start working with counter, see the following documentation available online:
+By using the Motoko keyword `stable` when declaring the `counter` variable,
+the value of this variable will automatically be preserved whenever your canister code is
+upgraded. Without the `stable` keyword, a variable is deemed `flexible`, and its value
+is reinitialized on every canister upgrade, i.e. whenever new code is deployed to the canister.
 
-- [Quick Start](https://smartcontracts.org/docs/quickstart/quickstart-intro.html)
-- [SDK Developer Tools](https://smartcontracts.org/docs/developers-guide/sdk-guide.html)
-- [Rust Canister Devlopment Guide](https://smartcontracts.org/docs/rust-guide/rust-intro.html)
-- [ic-cdk](https://docs.rs/ic-cdk)
-- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
-- [Candid Introduction](https://smartcontracts.org/docs/candid-guide/candid-intro.html)
-- [JavaScript API Reference](https://erxue-5aaaa-aaaab-qaagq-cai.raw.ic0.app)
+To learn more about these features of Motoko, see:
+* https://sdk.dfinity.org/docs/language-guide/motoko.html#_orthogonal_persistence
+* https://sdk.dfinity.org/docs/language-guide/upgrades.html#_declaring_stable_variables
 
-If you want to start working on your project right away, you might want to try the following commands:
+## Introduction
 
-```bash
-cd counter/
-dfx help
-dfx canister --help
-```
+The application provides an interface that exposes the following methods:
 
-## Running the project locally
+*  `set`, which sets the value of the counter;
 
-If you want to test your project locally, you can use the following commands:
+*  `inc`, which increments the value of the counter; and
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+*  `get`, which gets the value of the counter.
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
+## Prerequisites
 
-Once the job completes, your application will be available at `http://localhost:8000?canisterId={asset_canister_id}`.
+Verify the following before running this demo:
+
+*  You have downloaded and installed the [DFINITY Canister
+   SDK](https://sdk.dfinity.org).
+
+*  You have stopped any Internet Computer or other network process that would
+   create a port conflict on 8000.
+
+## Demo
+
+1. Start a local internet computer.
+
+   ```text
+   dfx start
+   ```
+
+1. Open a new terminal window.
+
+1. Reserve an identifier for your canister.
+
+   ```text
+   dfx canister create counter_frontend
+   dfx canister create counter_backend
+   ```
+
+1. Build your canister.
+
+   ```text
+   dfx build
+   ```
+
+1. Deploy your canister.
+
+   ```text
+   dfx canister install counter_frontend
+   dfx canister install counter_backend
+   ```
+
+1. Set the value of the counter.
+
+   ```text
+   dfx canister call counter_backend set '(8 : nat)'
+   ```
+
+1. Increment the value of the counter.
+
+   ```text
+   dfx canister call counter_backend inc
+   ```
+
+1. Get the value of the counter.
+
+   ```text
+   dfx canister call counter_backend get
+   ```
+
+1. Observe the following result.
+
+   ```
+   (8)
+   ```
