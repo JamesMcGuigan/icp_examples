@@ -1,0 +1,36 @@
+{
+  "canisters": {
+    "counter_backend": {
+      "candid": "src/counter_backend/counter_backend.did",
+      "package": "counter_backend",
+      "type": "rust"
+    },
+    "counter_frontend": {
+      "dependencies": [
+        "counter_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/counter_frontend/src/index.html"
+      },
+      "source": [
+        "src/counter_frontend/assets",
+        "dist/counter_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.11.1",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
