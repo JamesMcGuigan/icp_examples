@@ -49,6 +49,8 @@ Verify the following before running this demo:
 
    ```text
    dfx canister create counter_frontend
+   dfx canister create counter_yew
+   dfx canister create counter_did
    dfx canister create counter
    ```
 
@@ -62,6 +64,8 @@ Verify the following before running this demo:
 
    ```text
    dfx canister install counter_frontend
+   dfx canister install counter_yew
+   dfx canister install counter_did
    dfx canister install counter
    ```
 
